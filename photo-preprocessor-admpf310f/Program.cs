@@ -108,7 +108,12 @@ class Program
                     RotateFlipType fType = GetRotateFlipTypeByExifOrientationData(pItem.Value[0]);
 
                     if (fType != RotateFlipType.RotateNoneFlipNone)
+                    {
                         img.RotateFlip(fType);
+
+                        pItem.Value[0] = 1;
+                        img.SetPropertyItem(pItem);
+                    }
                 }
 
                 img.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
