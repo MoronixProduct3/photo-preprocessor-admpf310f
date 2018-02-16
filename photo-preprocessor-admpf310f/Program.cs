@@ -64,11 +64,8 @@ class Program
 
         var down = await dbx.Files.DownloadZipAsync(settings.folderPath);
 
-        using (var fileStream = File.Create(zipPath))
-        {
-            Stream data = await down.GetContentAsStreamAsync();
-            data.CopyTo(fileStream);
-        }
+        var data = await down.GetContentAsByteArrayAsync();
+        File.WriteAllBytes(zipPath, data);
 
         Console.WriteLine(" Terminé");
     }
