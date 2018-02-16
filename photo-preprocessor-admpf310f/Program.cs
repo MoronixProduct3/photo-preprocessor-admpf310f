@@ -67,7 +67,7 @@ class Program
         using (var fileStream = File.Create(zipPath))
         {
             Stream data = await down.GetContentAsStreamAsync();
-            data.CopyTo(fileStream);
+            await data.CopyToAsync(fileStream);
         }
 
         Console.WriteLine(" Terminé");
